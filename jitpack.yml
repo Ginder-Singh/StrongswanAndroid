@@ -13,7 +13,6 @@ before_install:
   - set +o pipefail
   - yes | android-sdk-linux/tools/bin/sdkmanager --licenses
   - set -o pipefail
-install:
   - export ANDROID_NDK_ROOT=$PWD/android-sdk-linux
   - ls $PWD
   - export OPENSSL_SRC=$PWD/openssl
@@ -28,6 +27,7 @@ install:
   - ./configure.sh
   - echo 'Done configure'
   - make dist
+install:
   - echo 'Done making dist'
   - cd strongswan/src/frontends/android
   - sed -i -e '/app\ {/alintOptions\ {abortOnError\ false}' build.gradle
