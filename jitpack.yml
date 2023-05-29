@@ -15,7 +15,8 @@ before_install:
   - set -o pipefail
 install:
   - export ANDROID_NDK_ROOT=$PWD/android-sdk-linux
-  - export OPENSSL_SRC=./openssl
+  - ls $PWD
+  - export OPENSSL_SRC=$PWD/openssl
   - export NO_DOCKER=true
   - cd strongswan/src/frontends/android/openssl
   - ./build.sh
