@@ -16,6 +16,7 @@ before_install:
 install:
   - export ANDROID_NDK_ROOT=$PWD/android-sdk-linux
   - export OPENSSL_SRC=./openssl
+  - export NO_DOCKER=true
   - cd strongswan/src/frontends/android/openssl
   - ./build.sh
   - echo 'Done compiling openssl'
