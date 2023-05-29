@@ -19,7 +19,7 @@ before_install:
   - export OPENSSL_SRC=$PWD/openssl
   - export NO_DOCKER=true
   - cd strongswan/src/frontends/android/openssl
-  - ./build.sh
+  - ./compile.sh
   - echo 'Done compiling openssl'
   - cd ../../../../
   - ls
