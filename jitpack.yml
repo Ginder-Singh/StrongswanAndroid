@@ -14,10 +14,20 @@ before_install:
   - yes | android-sdk-linux/tools/bin/sdkmanager --licenses
   - set -o pipefail
 install:
+  - export ANDROID_NDK_ROOT=$PWD/android-sdk-linux
+  - export OPENSSL_SRC=./openssl
+  - cd strongswan/src/frontends/android/openssl
+  - ./compile.sh
+  - echo 'Done compiling openssl'
+  - cd ../../../../
+  - ls
   - ./autogen.sh
+  - echo 'Done auto gen'
   - ./configure.sh
+  - echo 'Done configure'
   - make dist
-  - pushd src/frontends/android/app
+  - echo 'Done making dist'
+  - cd strongswan/src/frontends/android
   - sed -i -e '/app\ {/alintOptions\ {abortOnError\ false}' build.gradle
   - gradle assembleRelease
   - cd strongswan/src/frontends/android
