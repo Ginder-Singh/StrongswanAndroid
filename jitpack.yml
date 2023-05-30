@@ -15,7 +15,7 @@ before_install:
   - yes | android-sdk-linux/tools/bin/sdkmanager --licenses
   - set -o pipefail
   - export ANDROID_NDK=$PWD/android-sdk-linux
-  - clone -- git://git.openssl.org/openssl.git build/srclib/OpenSSL
+  - git clone -- git://git.openssl.org/openssl.git build/srclib/OpenSSL
   - git rev-parse --show-toplevel
   - git checkout -f OpenSSL_1_1_1t
   - git clean -dffx
