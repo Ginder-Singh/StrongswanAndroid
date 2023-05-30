@@ -15,13 +15,14 @@ before_install:
   - yes | android-sdk-linux/tools/bin/sdkmanager --licenses
   - set -o pipefail
   - export ANDROID_NDK=$PWD/android-sdk-linux
+  - strongswan="$PWD/strongswan"
+  - lib="$PWD/app/libs"
   - git clone -- git://git.openssl.org/openssl.git build/srclib/OpenSSL
+  - pushd build/srclib/OpenSSL
   - git rev-parse --show-toplevel
   - git checkout -f OpenSSL_1_1_1t
   - git clean -dffx
-  - lib="$PWD/app/libs"
   - PATH=$ANDROID_NDK/toolchains/llvm/prebuilt/linux-x86_64/bin:$PATH
-  - pushd $$OpenSSL$$
   - CC=armv7a-linux-androideabi16-clang ./Configure android-arm no-shared no-ssl3
     no-engine no-dso no-asm no-hw no-comp no-stdio -fPIC -DOPENSSL_PIC -D__ANDROID_API__=16
     -ffast-math -O3 -funroll-loops
@@ -58,11 +59,12 @@ before_install:
   - echo "LOCAL_SRC_FILES := \$(TARGET_ARCH_ABI)/libcrypto.a" >>"${lib}/Android.mk"
   - echo "LOCAL_EXPORT_C_INCLUDES := \$(LOCAL_PATH)/include" >>"${lib}/Android.mk"
   - echo "include \$(PREBUILT_STATIC_LIBRARY)" >>"${lib}/Android.mk"
-  - cd ../../../../
+  - pushd $$strongswan$$
   - ./autogen.sh
   - ./configure --disable-defaults
   - make dist -j $(nproc)
-  - ls app/libs
+  - pushd $$lib$$
+  - ls
 install:
   - echo 'Done making dist'
   - cd strongswan/src/frontends/android
