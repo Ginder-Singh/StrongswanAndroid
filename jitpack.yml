@@ -1,4 +1,4 @@
-before_install:
+install:
   - apt-get --quiet update --yes
   - apt-get --quiet install --yes wget tar unzip lib32stdc++6 lib32z1 libgmp-dev
   - apt-get install jq automake autoconf libtool pkg-config gettext perl python flex bison gperf
@@ -66,7 +66,6 @@ before_install:
   - make dist -j $(nproc)
   - pushd $$lib$$
   - ls
-install:
   - echo 'Done making dist'
   - cd strongswan/src/frontends/android
   - sed -i -e '/app\ {/alintOptions\ {abortOnError\ false}' build.gradle
