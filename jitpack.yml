@@ -1,4 +1,9 @@
 install:
+  - apt-get source autoconf
+  - ./configure --prefix=$HOME/apps
+  - make
+  - make install
+  - export PATH="$HOME/apps/bin:$PATH"
   - apt-get --quiet update --yes
   - apt-get --quiet install --yes wget tar unzip lib32stdc++6 lib32z1 libgmp-dev
   - apt-get install jq automake autoconf libtool pkg-config gettext perl python flex bison gperf
