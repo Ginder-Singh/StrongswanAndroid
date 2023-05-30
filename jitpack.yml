@@ -14,7 +14,6 @@ before_install:
   - set +o pipefail
   - yes | android-sdk-linux/tools/bin/sdkmanager --licenses
   - set -o pipefail
-  - export ANDROID_NDK=$PWD/android-sdk-linux
   - strongswan="$PWD/strongswan"
   - lib="$PWD/app/libs"
   - git clone -- git://git.openssl.org/openssl.git build/srclib/OpenSSL
