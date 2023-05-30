@@ -70,11 +70,7 @@ install:
   - echo 'Done making dist'
   - cd strongswan/src/frontends/android
   - sed -i -e '/app\ {/alintOptions\ {abortOnError\ false}' build.gradle
-  - gradle assembleRelease
-  - cd strongswan/src/frontends/android
-  - ./gradlew assembleRelease
-  - cd ../../../
-  - ls
+  - cd ../
   - cp -r strongswan/src/frontends/android/app/src/main/libs/* app/src/libs
   - rm -fr strongswan/src/frontends/android/app/src/main/libs/*
   - rm -fr strongswan/src/frontends/android/app/build
