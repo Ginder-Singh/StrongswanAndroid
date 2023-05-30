@@ -9,6 +9,8 @@ before_install:
   - echo y | android-sdk-linux/tools/bin/sdkmanager "build-tools;33.0.2" >/dev/null
   - echo y | android-sdk-linux/tools/bin/sdkmanager "ndk;21.3.6528147" >/dev/null
   - export ANDROID_HOME=$PWD/android-sdk-linux
+  - ls $ANDROID_HOME
+  - export ANDROID_NDK_HOME=android-sdk-linux/ndk
   - export PATH=$PATH:$PWD/android-sdk-linux/platform-tools/
   - chmod +x ./gradlew
   - set +o pipefail
